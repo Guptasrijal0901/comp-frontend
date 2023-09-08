@@ -1,0 +1,37 @@
+.heading{
+    margin-top: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.main{   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    box-shadow: 0 0 15px 5px grey;
+    background: linear-gradient(to right ,rgb(79, 183, 228) , rgb(172, 232, 245));
+    position: relative; 
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-bottom: 80px;
+    padding: 20px;
+    font-size: larger;
+    font-weight: 90px;
+  }
+  input{
+    padding: 7px;
+    margin: 6px;
+    font-weight: bold;
+  }
+  .form-lable{
+    font-weight: bold;
+  }
+  button{
+   padding: 9px;
+   font-size: large;
+   margin: 10px;
+  }
+  button:hover{
+    cursor: pointer;
+  }
