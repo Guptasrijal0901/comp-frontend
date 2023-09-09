@@ -47,7 +47,7 @@ const gettable = async ()=>{
   }
 }
 //update
-const handleupdate = (index, newcomp)=>{
+const handleupdate = (i, newcomp)=>{
   const oldtask = [...task];
   // olddata[index].name= newname;
   // olddata[index].email= newemail;
@@ -55,7 +55,7 @@ const handleupdate = (index, newcomp)=>{
   // olddata[index].roll= newroll;
   // olddata[index].date= newdate;
   // olddata[index].phone= newphone;
-  oldtask[index].comp= newcomp;
+  oldtask[i].comp= newcomp;
   settask(oldtask);
 }
 
@@ -165,7 +165,7 @@ return(
           </ul>
                 <button
                   onClick={() => {
-                    handleupdate(v._id);
+                    handleupdate(v.i);
                   }}
                   className="btn btn-primary">
                   {" "}
