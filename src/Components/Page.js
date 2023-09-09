@@ -2,6 +2,7 @@ import './Comp.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 const Table = ()=> {
   useEffect(()=>{
@@ -20,9 +21,17 @@ const [date, setdate] = useState("");
 // create
 const handlecreate = async()=>{
   if(comp.trim()===""){
-  return alert("Please provide your complaint")
+  return Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Please enter your Complaint',
+  })
   }else if (roll.trim()==="") {
-    alert("Provide your rRoll number")
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please enter your Roll number',
+    })
   }
 setcomp("")
 setroll("")
@@ -31,10 +40,22 @@ name, email, branch,  roll, date, phone, comp
 });
 // console.log(response);
 if(response.data.success){
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: ' Once your complaint has been saved, it cannot be updated ',
+    showConfirmButton: false,
+    timer: 3000
+  })
   gettable();
 }else(
-  alert("Somthing went wrong")
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Something went wrong!',
+  })
 )}
+
 
 //read
 const gettable = async ()=>{
@@ -43,21 +64,22 @@ const gettable = async ()=>{
     // console.log(response.data.table);
     settask(response.data.read);
   }else{
-    alert( "Somthing went wrong");
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+    })
   }
 }
-//update
-const handleupdate = (i, newcomp)=>{
-  const oldtask = [...task];
-  // olddata[index].name= newname;
-  // olddata[index].email= newemail;
-  // olddata[index].branch= newbranch;
-  // olddata[index].roll= newroll;
-  // olddata[index].date= newdate;
-  // olddata[index].phone= newphone;
-  oldtask[i].comp= newcomp;
-  settask(oldtask);
-}
+// //update
+// const handleupdate = async (i, newcomp)=>{
+//  const response = await axios.post(`/update/${id}`
+//  )}
+//  if (response.data.success){
+//   gettable();
+//  }else{
+//   alert("You cannot update your complaint")
+//  }
 
 // delete
 const handledelete = async (taskid)=>{
@@ -65,7 +87,11 @@ const handledelete = async (taskid)=>{
   if (response.data.success){
     gettable();
   }else{
-    alert("Somthing went wrong")
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+    })
   }
 }
 return(
@@ -163,19 +189,25 @@ return(
           <li>Phone no. : {v.phone}</li>
           <li>Complaint : {v.comp}</li>
           </ul>
-                <button
+                {/* <button
                   onClick={() => {
-                    handleupdate(v.i);
+                    handleupdate(i , "Updated");
                   }}
                   className="btn btn-primary">
                   {" "}
                   Update
-                </button>
+                </button> */}
 
                 <button
                   onClick={() => {
                     handledelete(v._id);
+                    Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Your complaint is deleted permanently.',
+  })
                   }}
+                  
                   className="btn btn-primary"
                 >
                   Delete
