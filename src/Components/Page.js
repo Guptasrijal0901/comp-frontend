@@ -41,7 +41,7 @@ name, email, branch,  roll, date, phone, comp
 // console.log(response);
 if(response.data.success){
   Swal.fire({
-    position: 'top-end',
+    position: 'top',
     icon: 'success',
     title: ' Once your complaint has been saved, it cannot be updated ',
     showConfirmButton: false,
